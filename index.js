@@ -56,6 +56,6 @@ function displayResultsReal(responseJson) {
     }
 }
 
-function displayResultsRestaurants() {
-
+function displayResultsRestaurants(responseJson) {
+    console.log(responseJson);
 }
