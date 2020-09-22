@@ -8,16 +8,16 @@ function requestRealtor(location, state) {
         redirect: 'follow'
     };
 
-    fetch(`https://realtor.p.rapidapi.com/properties/v2/list-for-rent?${location}&state_code=${state}&limit=200&offset=0`, requestOptions)
+    fetch(`https://realtor.p.rapidapi.com/properties/v2/list-for-rent?${location}&state_code=${state}&limit=20&offset=0`, requestOptions)
         .then(response => response.json())
-        .then(result => requestRealtor(result))
+        .then(result => displayResultsReal(result))
         .catch(error => console.log('error', error));
 
 
 }
 
 function requestTripAdvisor(location) {
-    fetch("https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=30&sort=relevance&offset=0&lang=en_US&currency=USD&units=km&query=New%20York", {
+    fetch("https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=20&sort=relevance&offset=0&lang=en_US&currency=USD&units=km&query=" + location, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
@@ -51,11 +51,24 @@ $(function() {
 
 function displayResultsReal(responseJson) {
     console.log(responseJson);
-    if (responseJson.status == 'success') {
+    if (responseJson.properties.length > 0) {
+        const html = responseJson.properties.map(item => `
+    
+    <div><h3>${item.prop_type}
 
+    <a href="${item.rdc_web_url}">Link</a>
+
+    </h3></div>`)
+        $('#real_estate').html(html)
     }
 }
 
 function displayResultsRestaurants(responseJson) {
     console.log(responseJson);
+    if (responseJson.data.length > 0) {
+        const html = responseJson.data.map(item => `
+    
+    <div><h3>${item.result_object.name}</h3></div>`)
+        $('#restaurants').html(html)
+    }
 }
