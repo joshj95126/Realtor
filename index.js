@@ -17,7 +17,7 @@ function requestRealtor(location, state) {
 }
 
 function requestTripAdvisor(location) {
-    fetch(`https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=30&currency=USD&lang=en_US&location_id=${location}`, {
+    fetch("https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=20&sort=relevance&offset=0&lang=en_US&type=restaurants&currency=USD&units=km&query=" + location + " USA", {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
@@ -54,11 +54,13 @@ function displayResultsReal(responseJson) {
     if (responseJson.properties.length > 0) {
         const html = responseJson.properties.map(item => `
     
-    <img src="${item.photos[0].href}"/>
+    
 
 
     
-        <div>
+        <div class="realitem">
+        
+        <img src="${item.photos[0].href}"/>
         <h3>${item.prop_type}
         ${item.address.city}
         ${item.address.line}
@@ -67,7 +69,7 @@ function displayResultsReal(responseJson) {
     </h3>
     <a href="${item.rdc_web_url}">Link</a>
     </div>`)
-        $('#real_estate').html(html)
+        $('#real_estate').html("<h2>Places For Rent</h2>" + html)
     }
 }
 
@@ -88,6 +90,6 @@ function displayResultsRestaurants(responseJson) {
             ${img} 
             </div>`
         })
-        $('#restaurants').html(html)
+        $('#restaurants').html("<h2>Points Of Interest</h2>" + html)
     }
 }

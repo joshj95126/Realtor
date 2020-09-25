@@ -1,0 +1,13 @@
+.realitem img {
+    width: 250px;
+}
+
+#restaurants {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#restaurants h2 {
+    display: block;
+    width: 100%;
+}
