@@ -17,7 +17,7 @@ function requestRealtor(location, state) {
 }
 
 function requestTripAdvisor(location) {
-    fetch("https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=20&sort=relevance&offset=0&lang=en_US&type=restaurants&currency=USD&units=km&query=" + location, {
+    fetch(`https://tripadvisor1.p.rapidapi.com/restaurants/list?restaurant_tagcategory_standalone=10591&lunit=km&restaurant_tagcategory=10591&limit=30&currency=USD&lang=en_US&location_id=${location}`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
@@ -78,7 +78,7 @@ function displayResultsRestaurants(responseJson) {
 
         const html = responseJson.data.map(item => {
             if (item.result_object.photo) {
-                img = `<img src="${item.result_object.photo.images.small.url}">`
+                img = `<img src="${item.result_object.photo.images.medium.url}">`
             }
             return `
     
