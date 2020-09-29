@@ -11,3 +11,8 @@
     display: block;
     width: 100%;
 }
+
+body {
+    background-image: url("snazzy-image.png");
+    background-color: #cccccc;
+}
