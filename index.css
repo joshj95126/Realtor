@@ -8,8 +8,13 @@
 }
 
 #restaurants h2 {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
+}
+
+#restaurants img {
+    width: 250px;
 }
 
 body {
