@@ -1,23 +1,67 @@
 .realitem img {
-    width: 250px;
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.realitem {
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    border: 1px solid gray;
+    background-color: rgba( 255, 255, 255, 0.5);
+}
+
+#real_estate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 #restaurants {
     display: flex;
     flex-wrap: wrap;
-}
-
-#restaurants h2 {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    justify-content: space-around;
 }
 
 #restaurants img {
-    width: 250px;
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.points_interest {
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    border: 1px solid gray;
+    background-color: rgba( 255, 255, 255, 0.5);
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+form {
+    width: 400px;
+    height: 200px;
+    margin: 30px auto;
+    background-color: rgba( 255, 255, 255, 0.5);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 body {
     background-image: url("snazzy-image.png");
     background-color: #cccccc;
+    background-repeat: repeat-y;
+    background-size: 100%;
 }
