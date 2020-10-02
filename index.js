@@ -1,3 +1,6 @@
+const STATE = {
+
+}
 function requestRealtor(location, state) {
     var myHeaders = new Headers();
     myHeaders.append("X-RapidAPI-Key", "a08f1d89f5msha8e71f3e2f5cffep1af3f3jsnf24db2d71b5a");
@@ -8,7 +11,7 @@ function requestRealtor(location, state) {
         redirect: 'follow'
     };
 
-    fetch(`https://realtor.p.rapidapi.com/properties/v2/list-for-rent?${location}&state_code=${state}&limit=20&offset=0&radius=10`, requestOptions)
+    fetch(`https://realtor.p.rapidapi.com/properties/v2/list-for-rent?${location}&state_code=${state}&limit=20&offset=0&radius=1`, requestOptions)
         .then(response => response.json())
         .then(result => displayResultsReal(result))
         .catch(error => console.log('error', error));
@@ -37,20 +40,23 @@ function watchForm() {
         event.preventDefault();
         const location = event.target.location.value;
         const state = event.target.state.value;
+        STATE.location = location;
         requestRealtor(location, state)
         requestTripAdvisor(location + "-" + state)
     })
 }
 
 $(function () {
-    console.log('App loaded! Waiting for submit!');
+    
     watchForm();
 });
 
 function displayResultsReal(responseJson) {
-    console.log(responseJson);
-    if (responseJson.properties.length > 0) {
-        const html = responseJson.properties.map(item => `
+    
+    const list = responseJson.properties.filter(p => p.address.city.toLowerCase() == STATE.location)
+    let html;
+    if (list.length > 0) {
+        html = list.map(item => `
     
         <div class="realitem">
         
@@ -60,13 +66,17 @@ function displayResultsReal(responseJson) {
         ${item.address.line}
     </h3>
     <a target="_new" href="${item.rdc_web_url}">More Info</a>
-    </div>`)
-        $('#real_estate').html("<h2>Places For Rent</h2>" + html.join(""))
+    </div>`).join("")
     }
-}
+    else {
+        html = "No Results Found - try another location"
+    }
+
+    $('#real_estate').html("<h2>Places For Rent</h2>" + html)
+};
+
 
 function displayResultsRestaurants(responseJson) {
-    console.log(responseJson);
     if (responseJson.data.length > 0) {
         let img
 

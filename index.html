@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Estate Real</title>
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -15,10 +15,10 @@
 
         <form>
             <label for="location">City</label>
-            <input type="text" name="location" required>
+            <input type="text" id="location" name="location" required>
 
 
-            <label for="location">State</label>
+            <label for="state">State</label>
             <select id="state">
                <option value = "AL">AL</option>
                <option value = "AK">AK</option>
@@ -75,11 +75,11 @@
 
         </form>
 
-        <section class="results hidden" id="real_estate">
+        <section role="region" aria-live="assertive" class="results hidden" id="real_estate">
 
         </section>
 
-        <section class="results hidden" id="restaurants">
+        <section role="region" aria-live="assertive" class="results hidden" id="restaurants">
 
         </section>
 
